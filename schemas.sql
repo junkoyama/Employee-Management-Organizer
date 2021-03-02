@@ -10,7 +10,7 @@ CREATE TABLE department(
 );
 
 CREATE TABLE role(
-id INT NOT NULL AUTO_INCREMENT,
+id INT AUTO_INCREMENT,
 role_title VARCHAR(30) NOT NULL,
 role_salary DECIMAL(8,2) NOT NULL,
 dept_id INT,
@@ -22,9 +22,9 @@ CREATE TABLE employee(
 id INT AUTO_INCREMENT,
 first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
-role_id INT NOT NULL,
-manager_id INT DEFAULT NULL,
+-- role_id INT,
+-- manager_id INT,
 PRIMARY KEY(id),
-FOREIGN KEY (role_id) REFERENCES role(id),
-FOREIGN KEY (manager_id) REFERENCES employee(id)
+-- FOREIGN KEY (role_id) REFERENCES role(id),
+-- FOREIGN KEY (manager_id) REFERENCES employee(role_id)
 );

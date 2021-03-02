@@ -52,35 +52,35 @@ function start() {
 }
 
 // display the department table from employee_mgmt
-// function displayCurrentDept() {
-//    connection.query('SELECT * FROM department', function(err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     console.log('-----------------------------------------------------------');
+function displayCurrentDept() {
+   connection.query('SELECT * FROM department', function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log('-----------------------------------------------------------');
 
-//     start();
-//   });
-// };
-//end of display dept table
+    start();
+  });
+};
+// end of display dept table
 
-//start of view role table from employee_mgmt
-// function viewRoles() {
-//   connection.query('SELECT * from role', function(err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     console.log('-----------------------------------------------------------');
+// start of view role table from employee_mgmt
+function viewRoles() {
+  connection.query('SELECT * from role', function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log('-----------------------------------------------------------');
 
-//     start();
-//   });
-// };
-//end of view role table
+    start();
+  });
+};
+// end of view role table
 
-//start of view employees table from employee_mgmt
-// function viewEmployees() {
-//   connection.query('SELECT * from employee', function(err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     console.log('-----------------------------------------------------------');
-//   });
-// };
-//end of view employee table
+// start of view employees table from employee_mgmt
+function viewEmployees() {
+  connection.query('SELECT * from employee', function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log('-----------------------------------------------------------');
+  });
+};
+// end of view employee table
