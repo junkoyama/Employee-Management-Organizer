@@ -38,10 +38,10 @@ function start() {
       } 
       else if (answer.AddViewOrUpdate === "View All Roles") {
         viewRoles();
+      } else if (answer.AddViewOrUpdate === "View All Employees") {
+        viewEmployees();
       } 
-      // else if (answer.AddViewOrUpdate === "View an employee") {
-      //   viewEmployee();
-      // } else if (answer.AddViewOrUpdate === "Add a department") {
+      // else if (answer.AddViewOrUpdate === "Add a department") {
       //   addDepartment();
       // } else if (answer.AddViewOrUpdate === "Add a role") {
       //   addRole();
@@ -63,6 +63,8 @@ function displayCurrentDept() {
     if (err) throw err;
     console.table(res);
     console.log('-----------------------------------------------------------');
+
+    start();
   });
 };
 //end of display dept table
@@ -73,6 +75,18 @@ function viewRoles() {
     if (err) throw err;
     console.table(res);
     console.log('-----------------------------------------------------------');
+
+    start();
   });
 };
 //end of view role table
+
+//start of view employees table from employee_mgmt
+function viewEmployees() {
+  connection.query('SELECT * from employee', function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log('-----------------------------------------------------------');
+  });
+};
+//end of view employee table
