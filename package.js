@@ -22,23 +22,23 @@ function start() {
         type: "list",
         message: "Please select what you would like to do",
         choices: [
-          "View a department",
-          "View a role",
-          "View an employee",
-          "Add a department",
-          "Add a role",
-          "Add an employee",
-          "Update employee roles"
+          "View All Departments",
+          "View All Roles",
+          "View All Employees",
+          "Add a Department",
+          "Add a Role",
+          "Add an Employee",
+          "Update Employee Roles"
         ],
       },
     ])
     .then(function (answer) {
-      if (answer.AddViewOrUpdate === "View a department") {
+      if (answer.AddViewOrUpdate === "View All Departments") {
         displayCurrentDept();
       } 
-      // else if (answer.AddViewOrUpdate === "View a role") {
-      //   viewRole();
-      // } 
+      else if (answer.AddViewOrUpdate === "View All Roles") {
+        viewRoles();
+      } 
       // else if (answer.AddViewOrUpdate === "View an employee") {
       //   viewEmployee();
       // } else if (answer.AddViewOrUpdate === "Add a department") {
@@ -57,10 +57,22 @@ function start() {
     });
 };
 
+// display the department table from employee_mgmt
 function displayCurrentDept() {
    connection.query('SELECT * FROM department', function(err, res) {
     if (err) throw err;
     console.table(res);
-    console.log('-----------------------------------------------------------')
+    console.log('-----------------------------------------------------------');
   });
 };
+//end of display dept table
+
+//start of view role table from employee_mgmt
+function viewRoles() {
+  connection.query('SELECT * from role', function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log('-----------------------------------------------------------');
+  });
+};
+//end of view role table
