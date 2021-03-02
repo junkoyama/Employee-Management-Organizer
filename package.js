@@ -16,77 +16,71 @@ connection.connect(function (err) {
 
 function start() {
   inquirer
-    .prompt([
-      {
-        name: "AddViewOrUpdate",
-        type: "list",
-        message: "Please select what you would like to do",
-        choices: [
-          "View All Departments",
-          "View All Roles",
-          "View All Employees",
-          "Add a Department",
-          "Add a Role",
-          "Add an Employee",
-          "Update Employee Roles"
-        ],
-      },
-    ])
+    .prompt({
+      name: "AddViewOrUpdate",
+      type: "list",
+      message: "Please select what you would like to do",
+      choices: [
+        "View All Departments",
+        "View All Roles",
+        "View All Employees",
+        "Add a Department",
+        "Add a Role",
+        "Add an Employee",
+        "Update Employee Roles",
+      ],
+    })
     .then(function (answer) {
       if (answer.AddViewOrUpdate === "View All Departments") {
         displayCurrentDept();
-      } 
-      else if (answer.AddViewOrUpdate === "View All Roles") {
+      } else if (answer.AddViewOrUpdate === "View All Roles") {
         viewRoles();
       } else if (answer.AddViewOrUpdate === "View All Employees") {
         viewEmployees();
-      } 
-      // else if (answer.AddViewOrUpdate === "Add a department") {
-      //   addDepartment();
-      // } else if (answer.AddViewOrUpdate === "Add a role") {
-      //   addRole();
-      // } else if (answer.AddViewOrUpdate === "Add an employee") {
-      //   addEmployee();
-      // } else if (answer.AddViewOrUpdate === "Update employee roles") {
-      //   updateEmployeeRole();
-      // } 
-      else {
-        // otherwise end prompt
+      } else if (answer.AddViewOrUpdate === "Add a department") {
+        addDepartment();
+      } else if (answer.AddViewOrUpdate === "Add a role") {
+        addRole();
+      } else if (answer.AddViewOrUpdate === "Add an employee") {
+        addEmployee();
+      } else if (answer.AddViewOrUpdate === "Update employee roles") {
+        updateEmployeeRole();
+      } else {
         connection.end();
-      };
+      }
     });
-};
+}
 
 // display the department table from employee_mgmt
-function displayCurrentDept() {
-   connection.query('SELECT * FROM department', function(err, res) {
-    if (err) throw err;
-    console.table(res);
-    console.log('-----------------------------------------------------------');
+// function displayCurrentDept() {
+//    connection.query('SELECT * FROM department', function(err, res) {
+//     if (err) throw err;
+//     console.table(res);
+//     console.log('-----------------------------------------------------------');
 
-    start();
-  });
-};
+//     start();
+//   });
+// };
 //end of display dept table
 
 //start of view role table from employee_mgmt
-function viewRoles() {
-  connection.query('SELECT * from role', function(err, res) {
-    if (err) throw err;
-    console.table(res);
-    console.log('-----------------------------------------------------------');
+// function viewRoles() {
+//   connection.query('SELECT * from role', function(err, res) {
+//     if (err) throw err;
+//     console.table(res);
+//     console.log('-----------------------------------------------------------');
 
-    start();
-  });
-};
+//     start();
+//   });
+// };
 //end of view role table
 
 //start of view employees table from employee_mgmt
-function viewEmployees() {
-  connection.query('SELECT * from employee', function(err, res) {
-    if (err) throw err;
-    console.table(res);
-    console.log('-----------------------------------------------------------');
-  });
-};
+// function viewEmployees() {
+//   connection.query('SELECT * from employee', function(err, res) {
+//     if (err) throw err;
+//     console.table(res);
+//     console.log('-----------------------------------------------------------');
+//   });
+// };
 //end of view employee table
