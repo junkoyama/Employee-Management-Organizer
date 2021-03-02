@@ -16,20 +16,22 @@ connection.connect(function (err) {
 
 function start() {
   inquirer
-    .prompt({
-      name: "AddViewOrUpdate",
-      type: "list",
-      message: "Please select what you would like to do",
-      choices: [
-        "View All Departments",
-        "View All Roles",
-        "View All Employees",
-        "Add a Department",
-        "Add a Role",
-        "Add an Employee",
-        "Update Employee Roles",
-      ],
-    })
+    .prompt([
+      {
+        name: "AddViewOrUpdate",
+        type: "list",
+        message: "Please select what you would like to do",
+        choices: [
+          "View All Departments",
+          "View All Roles",
+          "View All Employees",
+          "Add a Department",
+          "Add a Role",
+          "Add an Employee",
+          "Update Employee Roles",
+        ],
+      },
+    ])
     .then(function (answer) {
       if (answer.AddViewOrUpdate === "View All Departments") {
         displayCurrentDept();
@@ -37,13 +39,13 @@ function start() {
         viewRoles();
       } else if (answer.AddViewOrUpdate === "View All Employees") {
         viewEmployees();
-      } else if (answer.AddViewOrUpdate === "Add a department") {
+      } else if (answer.AddViewOrUpdate === "Add a Department") {
         addDepartment();
-      } else if (answer.AddViewOrUpdate === "Add a role") {
+      } else if (answer.AddViewOrUpdate === "Add a Role") {
         addRole();
-      } else if (answer.AddViewOrUpdate === "Add an employee") {
+      } else if (answer.AddViewOrUpdate === "Add an Employee") {
         addEmployee();
-      } else if (answer.AddViewOrUpdate === "Update employee roles") {
+      } else if (answer.AddViewOrUpdate === "Update Employee Roles") {
         updateEmployeeRole();
       } else {
         connection.end();
@@ -53,34 +55,47 @@ function start() {
 
 // display the department table from employee_mgmt
 function displayCurrentDept() {
-   connection.query('SELECT * FROM department', function(err, res) {
+  console.log("Loading View Departments...\n")
+  connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log('-----------------------------------------------------------');
+    console.log("-----------------------------------------------------------\n");
 
     start();
   });
-};
+}
 // end of display dept table
 
 // start of view role table from employee_mgmt
 function viewRoles() {
-  connection.query('SELECT * from role', function(err, res) {
+  console.log("Loading View Roles...\n")
+  connection.query("SELECT * from role", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log('-----------------------------------------------------------');
+    console.log("-----------------------------------------------------------\n");
 
     start();
   });
-};
+}
 // end of view role table
 
 // start of view employees table from employee_mgmt
 function viewEmployees() {
-  connection.query('SELECT * from employee', function(err, res) {
+  console.log("Loading View Employees...\n");
+
+  connection.query("SELECT * from employee", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log('-----------------------------------------------------------');
+    console.log("-----------------------------------------------------------\n");
+
+    start();
   });
-};
+
+}
 // end of view employee table
+
+// start of add department table from employee_mgmt
+function addDepartment() {
+  start();
+};
+// end of add department table
