@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "main": "package.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon package.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,8 +18,7 @@
   },
   "homepage": "https://github.com/junkoyama/Employee-Management-Organizer#readme",
   "dependencies": {
-    "inquirer": "^8.0.0",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.7"
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
   }
 }
