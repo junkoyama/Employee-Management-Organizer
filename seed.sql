@@ -1,27 +1,14 @@
-DROP DATABASE IF EXISTS employee_mgmt;
-CREATE DATABASE employee_mgmt;
+--prepopulate database for users to have options to view in the tables from at the start
 
 USE employee_mgmt;
 
-CREATE TABLE department(
-	id INT NOT NULL,
-    dept_name VARCHAR(30) NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE role(
-id INT NOT NULL,
-role_title VARCHAR(30) NOT NULL,
-role_salary DECIMAL(8,2) NOT NULL,
-dept_id INT NOT NULL,
-PRIMARY KEY (id)
-);
-
-CREATE TABLE employee(
-id INT NOT NULL,
-first_name VARCHAR(30) NOT NULL,
-last_name VARCHAR(30) NOT NULL,
-role_id INT NOT NULL,
-manager_id INT NULL,
-PRIMARY KEY(id)
-);
+INSERT INTO department(dept_name)
+VALUES ('Housekeeping');
+INSERT INTO department(dept_name)
+VALUES ('Front Desk');
+INSERT INTO department(dept_name)
+VALUES ('Catering and Events');
+INSERT INTO department(dept_name)
+VALUES ('Engineering');
+INSERT INTO department(dept_name)
+VALUES ('Security');
