@@ -140,11 +140,8 @@ function addDepartment() {
         },
         function (err) {
           if (err) throw err;
-          console.log(
-            "-----------------------------------------------------------" +
-              "\nSuccess! Department has been added\n" +
-              "-----------------------------------------------------------\n"
-          );
+
+          displayCurrentDept();
 
           start();
         }
@@ -190,11 +187,8 @@ function addRole() {
         },
         function (err) {
           if (err) throw err;
-          console.log(
-            "-----------------------------------------------------------" +
-              "\nSuccess! Role has been added\n" +
-              "-----------------------------------------------------------\n"
-          );
+
+          viewRoles();
 
           start();
         }
