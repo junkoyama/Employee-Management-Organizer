@@ -55,11 +55,18 @@ function start() {
 
 // display the department table from employee_mgmt
 function displayCurrentDept() {
-  console.log("Loading View Departments...\n")
+  console.log("\n-----------------------------------------------------------" +
+  "\nLoading View All Departments...\n" +
+  "-----------------------------------------------------------\n"
+  );
   connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log("-----------------------------------------------------------\n");
+    console.log(
+      "\n-----------------------------------------------------------\n" +
+      "Success! Here are all of the departments.\n" +
+        "-----------------------------------------------------------\n"
+    );
 
     start();
   });
@@ -68,11 +75,19 @@ function displayCurrentDept() {
 
 // start of view role table from employee_mgmt
 function viewRoles() {
-  console.log("Loading View Roles...\n")
+  console.log(
+    "\n-----------------------------------------------------------" +
+    "\nLoading View All Roles...\n" +
+    "-----------------------------------------------------------\n"
+    );
   connection.query("SELECT * from role", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log("-----------------------------------------------------------\n");
+    console.log(
+      "\n-----------------------------------------------------------\n" + 
+      "Success! Here are all of the roles.\n" +
+        "-----------------------------------------------------------\n"
+    );
 
     start();
   });
@@ -81,21 +96,59 @@ function viewRoles() {
 
 // start of view employees table from employee_mgmt
 function viewEmployees() {
-  console.log("Loading View Employees...\n");
+  console.log(
+    "\n-----------------------------------------------------------" +
+      "\nLoading View All Employees...\n" +
+      "-----------------------------------------------------------\n"
+  );
 
   connection.query("SELECT * from employee", function (err, res) {
     if (err) throw err;
     console.table(res);
-    console.log("-----------------------------------------------------------\n");
+    console.log(
+      "\n-----------------------------------------------------------\n" +
+        "Success! Here are all of the employees.\n" +
+        "-----------------------------------------------------------\n"
+    );
 
     start();
   });
-
 }
 // end of view employee table
 
 // start of add department table from employee_mgmt
 function addDepartment() {
-  start();
-};
+  console.log(
+    "-----------------------------------------------------------" +
+      "\n You have selected to add a new department. \n" +
+      "-----------------------------------------------------------"
+  );
+
+  inquirer
+    .prompt([
+      {
+        name: "addNewDept",
+        type: "input",
+        message: "Enter department name",
+      },
+    ])
+    .then(function (res) {
+      connection.query(
+        "INSERT INTO department SET ?",
+        {
+          dept_name: res.addNewDept,
+        },
+        function (err) {
+          if (err) throw err;
+          console.log(
+            "-----------------------------------------------------------" +
+              "\nSuccess! Department has been added\n" +
+              "-----------------------------------------------------------\n"
+          );
+
+          start();
+        }
+      );
+    });
+}
 // end of add department table
