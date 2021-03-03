@@ -28,7 +28,7 @@ function start() {
           "Add a Department",
           "Add a Role",
           "Add an Employee",
-          "Update Employee Roles",
+          "Update Employee Role",
         ],
       },
     ])
@@ -45,8 +45,8 @@ function start() {
         addRole();
       } else if (answer.AddViewOrUpdate === "Add an Employee") {
         addEmployee();
-      } else if (answer.AddViewOrUpdate === "Update Employee Roles") {
-        updateEmployeeRole();
+      } else if (answer.AddViewOrUpdate === "Update Employee Role") {
+        updateEmployee();
       } else {
         connection.end();
       }
@@ -55,16 +55,17 @@ function start() {
 
 // display the department table from employee_mgmt
 function displayCurrentDept() {
-  console.log("\n-----------------------------------------------------------" +
-  "\nLoading View All Departments...\n" +
-  "-----------------------------------------------------------\n"
+  console.log(
+    "\n-----------------------------------------------------------" +
+      "\nLoading View All Departments...\n" +
+      "-----------------------------------------------------------\n"
   );
   connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
     console.table(res);
     console.log(
       "\n-----------------------------------------------------------\n" +
-      "Success! Here are all of the departments.\n" +
+        "Success! Here are all of the departments.\n" +
         "-----------------------------------------------------------\n"
     );
 
@@ -77,15 +78,15 @@ function displayCurrentDept() {
 function viewRoles() {
   console.log(
     "\n-----------------------------------------------------------" +
-    "\nLoading View All Roles...\n" +
-    "-----------------------------------------------------------\n"
-    );
+      "\nLoading View All Roles...\n" +
+      "-----------------------------------------------------------\n"
+  );
   connection.query("SELECT * from role", function (err, res) {
     if (err) throw err;
     console.table(res);
     console.log(
-      "\n-----------------------------------------------------------\n" + 
-      "Success! Here are all of the roles.\n" +
+      "\n-----------------------------------------------------------\n" +
+        "Success! Here are all of the roles.\n" +
         "-----------------------------------------------------------\n"
     );
 
@@ -168,13 +169,13 @@ function addRole() {
       {
         name: "addRoleSalary",
         type: "input",
-        message: "Enter role salary"
+        message: "Enter role salary",
       },
       {
         name: "askDeptId",
-        type: 'input',
-        message: "Enter dept ID"
-      }
+        type: "input",
+        message: "Enter dept ID",
+      },
     ])
     .then(function (res) {
       connection.query(
@@ -182,8 +183,7 @@ function addRole() {
         {
           role_title: res.addNewRole,
           role_salary: res.addRoleSalary,
-          dept_id: res.askDeptId
-
+          dept_id: res.askDeptId,
         },
         function (err) {
           if (err) throw err;
@@ -215,13 +215,13 @@ function addEmployee() {
       {
         name: "addEmployeeLastName",
         type: "input",
-        message: "Enter employee last name"
+        message: "Enter employee last name",
       },
       {
         name: "addEmployeeId",
-        type: 'input',
-        message: "Enter employee ID"
-      }
+        type: "input",
+        message: "Enter employee ID",
+      },
     ])
     .then(function (res) {
       connection.query(
@@ -229,8 +229,7 @@ function addEmployee() {
         {
           first_name: res.addEmployeeFirstName,
           last_name: res.addEmployeeLastName,
-          id: res.addEmployeeId
-
+          id: res.addEmployeeId,
         },
         function (err) {
           if (err) throw err;
@@ -244,8 +243,68 @@ function addEmployee() {
 }
 // end of add employee table
 
+// start of add employee table from employee_mgmt
+function updateEmployee() {
+  console.log(
+    "-----------------------------------------------------------" +
+      "\n You have selected to update an employee. \n" +
+      "-----------------------------------------------------------"
+  );
 
+  connection.query("SELECT * FROM employee", function (err, res) {
+    if (err) throw err;
 
+    inquirer
+      .prompt([
+        {
+          name: "choice",
+          type: "list",
+          message: "\nWhich employee would you like to update?\n",
+          choices: function () {
+            const choiceArray = [];
+            for (let i = 0; i < res.length; i++) {
+              choiceArray.push(res[i].first_name + " " + res[i].last_name);
+            }
+            return choiceArray;
+          },
+        },
+        {
+          name: "updateEmployeeRole",
+          type: "input",
+          message: "What is the updated role?\n",
+        },
+      ])
+      .then(function (answer) {
+        function getId() {
+          for (let i = 0; i < res.length; i++) {
+            const fullName = res[i].first_name + " " + res[i].last_name;
+            if (answer.choice === fullName) {
+              return res[i].id;
+            }
+          }
+        }
+
+        connection.query(
+          "UPDATE employee SET ? WHERE ?",
+          [
+            {
+              role_id: answer.updateEmployeeRole,
+            },
+            {
+              id: getId(),
+            },
+          ],
+          function (err, answer) {
+            if (err) throw err;
+
+            viewEmployees();
+            start();
+          }
+        );
+      });
+  });
+}
+// end of add employee table
 
 // Notes to self to add later:
 // Find a way to enter askDeptId as empty field and be accepted
