@@ -203,6 +203,56 @@ function addRole() {
 }
 // end of add role table
 
+// start of add employee table from employee_mgmt
+function addEmployee() {
+  console.log(
+    "-----------------------------------------------------------" +
+      "\n You have selected to add a new employee. \n" +
+      "-----------------------------------------------------------"
+  );
+
+  inquirer
+    .prompt([
+      {
+        name: "addEmployeeFirstName",
+        type: "input",
+        message: "Enter employee first name",
+      },
+      {
+        name: "addEmployeeLastName",
+        type: "input",
+        message: "Enter employee last name"
+      },
+      {
+        name: "addEmployeeId",
+        type: 'input',
+        message: "Enter employee ID"
+      }
+    ])
+    .then(function (res) {
+      connection.query(
+        "INSERT INTO employee SET ?",
+        {
+          first_name: res.addEmployeeFirstName,
+          last_name: res.addEmployeeLastName,
+          id: res.addEmployeeId
+
+        },
+        function (err) {
+          if (err) throw err;
+
+          viewEmployees();
+
+          start();
+        }
+      );
+    });
+}
+// end of add employee table
+
+
+
+
 // Notes to self to add later:
 // Find a way to enter askDeptId as empty field and be accepted
 // Tried NOT NULL/NULL with no luck.
