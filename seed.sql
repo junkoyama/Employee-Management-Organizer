@@ -11,6 +11,12 @@ INSERT INTO department(dept_name)
 VALUES ('Engineering');
 INSERT INTO department(dept_name)
 VALUES ('Security');
+INSERT INTO department(dept_name)
+VALUES ('Human Resources');
+INSERT INTO department(dept_name)
+VALUES ('Accounting');
+INSERT INTO department(dept_name)
+VALUES ('Information Technology');
 
 INSERT INTO role(role_title, role_salary, dept_id)
 VALUES ('Housekeeping Manager', '43000.00', '1');
