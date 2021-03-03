@@ -152,3 +152,57 @@ function addDepartment() {
     });
 }
 // end of add department table
+
+// start of add role table from employee_mgmt
+function addRole() {
+  console.log(
+    "-----------------------------------------------------------" +
+      "\n You have selected to add a new role. \n" +
+      "-----------------------------------------------------------"
+  );
+
+  inquirer
+    .prompt([
+      {
+        name: "addNewRole",
+        type: "input",
+        message: "Enter role title",
+      },
+      {
+        name: "addRoleSalary",
+        type: "input",
+        message: "Enter role salary"
+      },
+      {
+        name: "askDeptId",
+        type: 'input',
+        message: "Enter dept ID"
+      }
+    ])
+    .then(function (res) {
+      connection.query(
+        "INSERT INTO role SET ?",
+        {
+          role_title: res.addNewRole,
+          role_salary: res.addRoleSalary,
+          dept_id: res.askDeptId
+
+        },
+        function (err) {
+          if (err) throw err;
+          console.log(
+            "-----------------------------------------------------------" +
+              "\nSuccess! Role has been added\n" +
+              "-----------------------------------------------------------\n"
+          );
+
+          start();
+        }
+      );
+    });
+}
+// end of add role table
+
+// Notes to self to add later:
+// Find a way to enter askDeptId as empty field and be accepted
+// Tried NOT NULL/NULL with no luck.
