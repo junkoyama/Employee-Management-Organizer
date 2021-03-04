@@ -33,6 +33,7 @@ function start() {
       },
     ])
     .then(function (answer) {
+      console.log(answer);
       if (answer.AddViewOrUpdate === "View All Departments") {
         displayCurrentDept();
       } else if (answer.AddViewOrUpdate === "View All Roles") {
