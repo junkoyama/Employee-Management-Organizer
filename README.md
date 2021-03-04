@@ -31,7 +31,7 @@ $ npm start
 #### How to View All Departments, Roles, and Employees:
 </br>
 
-![ViewAllGif](./Assets/viewDeptRoleEmployees)
+![ViewAllGif](Assets/viewDeptRoleEmployees.gif)
 
 
 #### How to Add New Department, Role, Employee:
