@@ -82,8 +82,8 @@ function viewRoles() {
       "-----------------------------------------------------------\n"
   );
   connection.query("SELECT * from role", function (err, res) {
-    if (err) throw err;
     console.table(res);
+    if (err) throw err;
     console.log(
       "\n-----------------------------------------------------------\n" +
         "Success! Here are all of the roles.\n" +
@@ -104,8 +104,8 @@ function viewEmployees() {
   );
 
   connection.query("SELECT * from employee", function (err, res) {
-    if (err) throw err;
     console.table(res);
+    if (err) throw err;
     console.log(
       "\n-----------------------------------------------------------\n" +
         "Success! Here are all of the employees.\n" +
@@ -144,7 +144,7 @@ function addDepartment() {
 
           displayCurrentDept();
 
-          start();
+          // start();
         }
       );
     });
@@ -190,7 +190,7 @@ function addRole() {
 
           viewRoles();
 
-          start();
+          // start();
         }
       );
     });
@@ -236,7 +236,7 @@ function addEmployee() {
 
           viewEmployees();
 
-          start();
+          // start();
         }
       );
     });
