@@ -194,7 +194,7 @@ function addRole() {
         }
       );
     });
-}
+};
 // end of add role table
 
 // start of add employee table from employee_mgmt
@@ -210,17 +210,17 @@ function addEmployee() {
       {
         name: "addEmployeeFirstName",
         type: "input",
-        message: "Enter employee first name",
+        message: "Enter employee first name"
       },
       {
         name: "addEmployeeLastName",
         type: "input",
-        message: "Enter employee last name",
+        message: "Enter employee last name"
       },
       {
         name: "addEmployeeId",
         type: "input",
-        message: "Enter employee ID",
+        message: "Enter employee ID"
       },
     ])
     .then(function (res) {
@@ -229,7 +229,7 @@ function addEmployee() {
         {
           first_name: res.addEmployeeFirstName,
           last_name: res.addEmployeeLastName,
-          id: res.addEmployeeId,
+          role_id: res.addEmployeeId,
         },
         function (err) {
           if (err) throw err;
@@ -240,7 +240,7 @@ function addEmployee() {
         }
       );
     });
-}
+};
 // end of add employee table
 
 // start of add employee table from employee_mgmt
@@ -303,7 +303,7 @@ function updateEmployee() {
         );
       });
   });
-}
+};
 // end of add employee table
 
 // Notes to self to add later:
