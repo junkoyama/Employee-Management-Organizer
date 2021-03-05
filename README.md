@@ -37,12 +37,11 @@ $ npm start
 #### How to Add New Department, Role, Employee:
 </br>
 
-Waiting to work with TA on fixing the node issue
-
+![AddDeptRoleEmployeeGif](./Assets/addDeptRoleEmployee.gif)
 #### How to Update an Employee:
 </br>
 
-Waiting to work with TA on fixing the node issue
+![updateEmployee](./Assets/updateEmployee.gif)
 ## Technologies Used
 * Javascript
 * Node
