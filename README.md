@@ -28,6 +28,8 @@ $ npm start
 
 </br>
 
+Here is a link to a walkthrough video of the application: [Click here](https://drive.google.com/file/d/1Vmu6aqEnsAYQM8btOh0nYB5dV8TNq0Ln/view)
+
 #### How to View All Departments, Roles, and Employees:
 </br>
 
